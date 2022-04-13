@@ -46,6 +46,8 @@ return [
         'secret' => env('PASSPORT_PERSONAL_ACCESS_CLIENT_SECRET'),
     ],
 
+    'remember_me_days' => 15,
+
     /*
     |--------------------------------------------------------------------------
     | Passport Storage Driver
