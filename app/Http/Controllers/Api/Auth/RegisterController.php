@@ -21,6 +21,8 @@ class RegisterController extends Controller
 
         $user->detail()->create($request->validated());
 
+        $user->sendEmailVerificationNotification();
+
         if (! Auth::attempt($request->only(['email', 'password']))) {
             return $this->error('Registration failed.', 500);
         }
