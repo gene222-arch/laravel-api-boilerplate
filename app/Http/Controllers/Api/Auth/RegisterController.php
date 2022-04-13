@@ -29,7 +29,9 @@ class RegisterController extends Controller
 
         return PassportService::generateToken(
             PassportService::personalAccessToken($request),
-            'Registration successful.'
+            'Registration successful.',
+            null,
+            201
         );
     }
 }
