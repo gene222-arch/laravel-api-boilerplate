@@ -10,6 +10,11 @@ use App\Services\PassportService;
 
 class LoginController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest:api')->only('login');
+    }
+
     public function login(LoginRequest $request)
     {
         if (! Auth::attempt($request->validated())) {
@@ -20,5 +25,15 @@ class LoginController extends Controller
             PassportService::personalAccessToken($request),
             'Logged in successfully.'
         );
+    }
+
+    public function logout(Request $request)
+    {
+        $request
+            ->user('api')
+            ->token()
+            ->revoke();
+
+        return $this->success('Logged out successfully.');
     }
 }

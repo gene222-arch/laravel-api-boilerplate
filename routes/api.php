@@ -23,3 +23,8 @@ Route::group([
     Route::post('login', [LoginController::class, 'login'])->name('login');
     Route::post('register', [RegisterController::class, 'register'])->name('register');
 });
+
+Route::middleware('auth:api')->group(function ()
+{
+    Route::post('auth/logout', [LoginController::class, 'logout'])->name('logout');
+});
