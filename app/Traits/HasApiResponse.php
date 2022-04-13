@@ -6,17 +6,17 @@ use Symfony\Component\HttpFoundation\Response;
 
 Trait HasApiResponse
 {
-    public function success(?string $message, $data = null, int $code = Response::HTTP_OK): JsonResponse
+    public function success(?string $message = '', $data = null, int $code = Response::HTTP_OK): JsonResponse
     {
         return $this->response($message, $data, $code, __FUNCTION__);
     }
 
-    public function error(?string $message, $data = null, int $code = Response::HTTP_BAD_REQUEST): JsonResponse
+    public function error(?string $message = '', $data = null, int $code = Response::HTTP_BAD_REQUEST): JsonResponse
     {
         return $this->response($message, $data, $code, __FUNCTION__);
     }
 
-    private function response(?string $message, $data = null, int $code, string $status): JsonResponse
+    private function response(?string $message = '', $data = null, int $code, string $status): JsonResponse
     {
         return response()->json([
             'data' => $data,
