@@ -13,6 +13,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest:api')->only('login');
+        $this->middleware('verified');
     }
 
     public function login(LoginRequest $request, PassportService $service)
