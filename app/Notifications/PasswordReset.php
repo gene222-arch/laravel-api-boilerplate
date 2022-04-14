@@ -41,7 +41,7 @@ class PasswordReset extends Notification
      */
     public function toMail($notifiable)
     {
-        $url = str(env('REACT_APP_URL', 'http://localhost:8000'))
+        $url = str(env('REACT_APP_URL', 'http://localhost:3000'))
             ->append("/forgot-password/reset?email={$notifiable->email}")
             ->append("&token={$this->token}");
 

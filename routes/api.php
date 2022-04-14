@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\ForgotPasswordController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Auth\VerificationController;
@@ -23,6 +24,12 @@ Route::group([
 ], function () {
     Route::post('login', [LoginController::class, 'login'])->name('login');
     Route::post('register', [RegisterController::class, 'register'])->name('register');
+
+    Route::controller(ForgotPasswordController::class)->group(function ()
+    {
+        Route::post('forgot-password', 'forgotPassword')->name('forgot.password');
+        Route::post('reset-password', 'reset')->name('reset.password');
+    });
 });
 
 Route::group([
