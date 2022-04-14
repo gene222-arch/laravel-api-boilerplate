@@ -24,7 +24,7 @@ class VerificationController extends Controller
             throw new AuthorizationException;
         }
 
-        if (! hash_equals($request->route('hash'), sha1($user->getEmailForVerification()))) {
+        if (! hash_equals((string) $request->get('hash'), sha1($user->getEmailForVerification()))) {
             throw new AuthorizationException;
         }
 
@@ -43,7 +43,7 @@ class VerificationController extends Controller
 
     public function resend(Request $request)
     {
-        $user = $request->user('api');
+        $user = User::firstWhere('email', $request->email);
 
         if ($user->hasVerifiedEmail()) {
             return $this->error('Account has been verified already.', 400);
