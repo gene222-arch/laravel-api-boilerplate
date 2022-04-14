@@ -25,7 +25,7 @@ class LoginControllerTest extends TestCase
             'password' => 'password',
         ];
 
-        $this->post('/api/auth/login', $credentials)
+        $this->post(route('auth.login'), $credentials)
             ->assertSuccessful()
             ->assertJsonStructure([
                 'data' => [
@@ -53,12 +53,12 @@ class LoginControllerTest extends TestCase
             'password' => 'password',
         ];
 
-        $loginResponse = $this->post('/api/auth/login', $credentials)
+        $loginResponse = $this->post(route('auth.login'), $credentials)
             ->assertSuccessful();
 
         $data = $loginResponse['data'];
 
-        $this->post('api/auth/logout', [], [
+        $this->post(route('auth.logout'), [], [
             'Authorization' => "{$data['token_type']} {$data['access_token']}"
         ])
             ->assertSuccessful();

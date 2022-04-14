@@ -35,7 +35,7 @@ class RegisterControllerTest extends TestCase
             'birthed_at' => Carbon::now()->subDays(random_int(1, 30)),
         ];
 
-        $this->post('/api/auth/register', $data)
+        $this->post(route('auth.register'), $data)
             ->assertCreated()
             ->assertJsonStructure([
                 'data' => [

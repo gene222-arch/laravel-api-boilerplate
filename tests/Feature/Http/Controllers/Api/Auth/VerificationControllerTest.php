@@ -56,7 +56,9 @@ class VerificationControllerTest extends TestCase
 
         $this->assertFalse($user->hasVerifiedEmail());
 
-        $this->get('api/email/resend?email=' . $user->email);
+        $this->get(route('verification.resend', [
+            'email' => $user->email
+        ]));
 
         Queue::assertPushed(QueueEmailVerification::class);
     }
