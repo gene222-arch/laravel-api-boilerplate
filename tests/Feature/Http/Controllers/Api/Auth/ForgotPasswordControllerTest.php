@@ -34,7 +34,7 @@ class ForgotPasswordControllerTest extends TestCase
             ->has(UserDetail::factory(), 'detail')
             ->create();
 
-        $this->post('/api/auth/forgot-password', [
+        $this->post(route('auth.forgot.password'), [
             'email' => $user->email,
         ]);
 
@@ -46,7 +46,7 @@ class ForgotPasswordControllerTest extends TestCase
      */
     public function user_does_not_receive_password_reset_link()
     {
-        $this->post('api/auth/forgot-password', [
+        $this->post(route('auth.forgot.password'), [
             'email' => $this->faker()->safeEmail()
         ]);
 
@@ -73,7 +73,7 @@ class ForgotPasswordControllerTest extends TestCase
             'password_confirmation' => 'New Password'
         ];
 
-        $this->post('/api/auth/reset-password', $data)
+        $this->post(route('auth.reset.password'), $data)
             ->assertSuccessful();
 
         $this->assertFalse(Hash::check('New Password', Hash::make('password')));
