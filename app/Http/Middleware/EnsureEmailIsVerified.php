@@ -25,7 +25,7 @@ class EnsureEmailIsVerified
     {
         if (
             $request->has('email') &&
-            $user = User::firstWhere($request->email)
+            $user = User::firstWhere('email', $request->email)
         ) {
             if (! $user->hasVerifiedEmail()) {
                 return $this->error('Your email is not verified.', null, 403);
