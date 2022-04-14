@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Jobs\QueueEmailVerification;
+use App\Jobs\QueuePasswordResetNotification;
 use App\Models\UserDetail;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
@@ -52,5 +53,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function sendEmailVerificationNotification(): void
     {
         QueueEmailVerification::dispatch($this);
+    }
+
+    public function sendPasswordResetNotification($token): void
+    {
+        QueuePasswordResetNotification::dispatch($this, $token);
     }
 }
