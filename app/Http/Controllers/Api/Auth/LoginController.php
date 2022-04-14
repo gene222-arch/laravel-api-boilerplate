@@ -22,9 +22,19 @@ class LoginController extends Controller
             return $this->error('Login failed.', 500);
         }
 
+        $user = auth()->user();
+
         return $service->generateToken(
             PassportService::personalAccessToken($request),
-            'Logged in successfully.'
+            'Logged in successfully.',
+            [
+                'id' => $user->id,
+                'first_name' => $user->detail->first_name,
+                'last_name' => $user->detail->last_name,
+                'email' => $user->email,
+                'birthed_at' => $user->detail->birthed_at,
+                'email_verified_at' => $user->email_verified_at,
+            ],
         );
     }
 
