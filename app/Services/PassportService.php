@@ -13,7 +13,7 @@ class PassportService
 {
     use HasApiResponse;
 
-    public static function generateToken(
+    public function generateToken(
         PersonalAccessTokenResult $token,
         ?string $message = null,
         $data = null,
@@ -27,7 +27,7 @@ class PassportService
             'data' => $data,
         ];
 
-        return self::success($message, $response, $code);
+        return $this->success($message, $response, $code);
     }
 
     public static function personalAccessToken(Request $request): PersonalAccessTokenResult

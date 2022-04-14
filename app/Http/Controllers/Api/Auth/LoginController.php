@@ -15,13 +15,13 @@ class LoginController extends Controller
         $this->middleware('guest:api')->only('login');
     }
 
-    public function login(LoginRequest $request)
+    public function login(LoginRequest $request, PassportService $service)
     {
         if (! Auth::attempt($request->validated())) {
             return $this->error('Login failed.', 500);
         }
 
-        return PassportService::generateToken(
+        return $service->generateToken(
             PassportService::personalAccessToken($request),
             'Logged in successfully.'
         );

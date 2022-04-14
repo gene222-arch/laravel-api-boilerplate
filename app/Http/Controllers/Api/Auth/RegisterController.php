@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {
-    public function register(RegisterRequest $request)
+    public function register(RegisterRequest $request, PassportService $service)
     {
         $user = User::create([
             'name' => "{$request->first_name} {$request->last_name}",
@@ -27,7 +27,7 @@ class RegisterController extends Controller
             return $this->error('Registration failed.', 500);
         }
 
-        return PassportService::generateToken(
+        return $service->generateToken(
             PassportService::personalAccessToken($request),
             'Registration successful.',
             null,
