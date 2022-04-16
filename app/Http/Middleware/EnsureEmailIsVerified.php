@@ -25,20 +25,18 @@ class EnsureEmailIsVerified
     {
         if (
             $request->has('email') &&
-            $user = User::firstWhere('email', $request->email)
+            ! $user = User::firstWhere('email', $request->email)
         ) {
+            return $this->error('Account does not exists.', null, 400);
+        }
+
+        if ($request->has('email') && $user) 
+        {
             if (! $user->hasVerifiedEmail()) {
                 return $this->error('Your email is not verified.', null, 403);
             }
 
             return $next($request);
-        }
-
-        if (
-            $request->has('email') &&
-            !User::firstWhere('email', $request->email)
-        ) {
-            return $this->error('Account does not exists.', null, 400);
         }
 
         if (
