@@ -35,6 +35,13 @@ class EnsureEmailIsVerified
         }
 
         if (
+            $request->has('email') &&
+            !User::firstWhere('email', $request->email)
+        ) {
+            return $this->error('Account does not exists.', null, 400);
+        }
+
+        if (
             ! $request->user('api') ||
             ($request->user('api') instanceof MustVerifyEmail &&
             ! $request->user('api')->hasVerifiedEmail())
