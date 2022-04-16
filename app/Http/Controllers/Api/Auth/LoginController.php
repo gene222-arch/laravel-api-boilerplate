@@ -18,7 +18,7 @@ class LoginController extends Controller
 
     public function login(LoginRequest $request, PassportService $service)
     {
-        if (! Auth::attempt($request->validated())) {
+        if (! Auth::attempt($request->only(['email', 'password']), $request->boolean('remember_me'))) {
             return $this->error('Login failed.', 500);
         }
 
