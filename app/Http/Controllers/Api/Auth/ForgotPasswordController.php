@@ -14,7 +14,7 @@ class ForgotPasswordController extends Controller
     public function __construct()
     {
         $this->middleware([
-            // 'throttle:6,1',
+            'throttle:6,1',
             'guest:api',
         ]);
     }   
