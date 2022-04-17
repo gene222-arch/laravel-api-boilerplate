@@ -23,15 +23,17 @@ class EnsureEmailIsVerified
      */
     public function handle($request, Closure $next, $redirectToRoute = null)
     {
+        /**
+         * Check unauthenticated user email
+         */
         if (
             $request->has('email') &&
-            ! $user = User::firstWhere('email', $request->email)
+            $request->filled('email')
         ) {
-            return $this->error('Account does not exists.', null, 400);
-        }
+            if (! $user = User::firstWhere('email', $request->email)) {
+                return $this->error('Account does not exists.', null, 400);
+            }
 
-        if ($request->has('email') && $user) 
-        {
             if (! $user->hasVerifiedEmail()) {
                 return $this->error('Your email is not verified.', null, 403);
             }
@@ -39,7 +41,11 @@ class EnsureEmailIsVerified
             return $next($request);
         }
 
+        /**
+         * Check authenticated user
+         */
         if (
+            $request->bearerToken() &&
             ! $request->user('api') ||
             ($request->user('api') instanceof MustVerifyEmail &&
             ! $request->user('api')->hasVerifiedEmail())
