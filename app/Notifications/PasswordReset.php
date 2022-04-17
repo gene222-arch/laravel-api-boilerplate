@@ -42,7 +42,7 @@ class PasswordReset extends Notification
     public function toMail($notifiable)
     {
         $url = str(env('REACT_APP_URL', 'http://localhost:3000'))
-            ->append("/auth/forgot-password/reset?email={$notifiable->email}")
+            ->append("/auth/reset-password?email={$notifiable->email}")
             ->append("&token={$this->token}");
 
         $passwordResetExpirationTime = config('auth.passwords.' . config('auth.defaults.passwords') . '.expire');

@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use App\Http\Requests\Api\Auth\ResetPasswordRequest;
 use App\Http\Requests\Api\Auth\ForgotPasswordRequest;
+use App\Models\PasswordReset;
+use App\Models\User;
 
 class ForgotPasswordController extends Controller
 {
@@ -32,6 +34,12 @@ class ForgotPasswordController extends Controller
 
     public function reset(ResetPasswordRequest $request)
     {
+        $user = User::firstWhere('email', $request->email);
+
+        if (! Password::tokenExists($user, $request->token)) {
+            return $this->error(trans(Password::INVALID_TOKEN), 400);
+        }
+
         $status = Password::reset(
             $request->only(['email', 'password', 'password_confirmation', 'token']),
             function ($user) use ($request)
