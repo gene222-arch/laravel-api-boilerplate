@@ -58,3 +58,5 @@ This boilerplate uses the famed software development process called `Test Driven
 | Version | Laravel Version |
 | :-----: | :-:             |
 | 1.x     | 9.x             |
+
+> **_NOTE:_**  When verifying an account you need to define the client app url in the `.env` file.
