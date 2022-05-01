@@ -39,7 +39,7 @@ class EmailVerification extends VerifyEmail
         );
 
         $apiUrl = str(env('APP_URL', 'http://localhost:8000'))->append('/api');
-        $reactAppUrl = str(env('REACT_APP_URL', 'http://localhost:3000'))->append('/auth');
+        $reactAppUrl = str(env('CLIENT_APP_URL', 'http://localhost:3000'));
         $url = str($url)->replace($apiUrl, $reactAppUrl);
 
         return $url;
