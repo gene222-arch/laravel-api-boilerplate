@@ -51,7 +51,7 @@ class Handler extends ExceptionHandler
         {
             if ($request->wantsJson()) 
             {
-                return $this->error('Resource not found');
+                return $this->error('Resource not found', null, 404);
             }
         });
     }
