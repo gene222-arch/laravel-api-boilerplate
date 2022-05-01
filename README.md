@@ -1,6 +1,8 @@
 ## Laravel Api Boilerplate
 A laravel app boilerplate for building or developing a restful api application.
 
+
+
 What features included?
 * Login
 * Register
@@ -50,3 +52,9 @@ Installation:
 
 # How to know if your laravel app is properly working as it should?
 This boilerplate uses the famed software development process called `Test Driven Development (TDD)`. It uses Laravel's beautiful feature or unit testing feature and you just have to run the test to determine if it's properly working.
+
+# Supported Versions
+
+| Version | Laravel Version |
+| :-----: | :-:             |
+| 1.x     | 9.x             |
