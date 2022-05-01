@@ -8,12 +8,9 @@ use App\Models\User;
 use App\Models\UserDetail;
 use Illuminate\Support\Facades\Queue;
 use App\Notifications\EmailVerification;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class VerificationControllerTest extends TestCase
 {
-    use RefreshDatabase;
-
     /**
      * @test
      */

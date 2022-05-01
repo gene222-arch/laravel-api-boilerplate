@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Api\Auth\LoginRequest;
+use App\Http\Resources\Api\UserResource;
+use App\Models\User;
 use App\Services\PassportService;
 
 class LoginController extends Controller
@@ -22,19 +24,10 @@ class LoginController extends Controller
             return $this->error('Login failed.', 500);
         }
 
-        $user = auth()->user();
-
         return $service->generateToken(
             PassportService::personalAccessToken($request),
             'Logged in successfully.',
-            [
-                'id' => $user->id,
-                'first_name' => $user->detail->first_name,
-                'last_name' => $user->detail->last_name,
-                'email' => $user->email,
-                'birthed_at' => $user->detail->birthed_at,
-                'email_verified_at' => $user->email_verified_at,
-            ],
+            UserResource::make($request->user()->load('detail')),
         );
     }
 
