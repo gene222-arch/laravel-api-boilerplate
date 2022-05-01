@@ -28,7 +28,7 @@ class VerificationControllerTest extends TestCase
 
         $transformVerificationUrl = str($mail->actionUrl)
             ->replace(
-                env('REACT_APP_URL', 'http://localhost:3000/auth'),
+                env('CLIENT_APP_URL', 'http://localhost:3000'),
                 env('APP_URL' . '/api', '/api')
             );
 
