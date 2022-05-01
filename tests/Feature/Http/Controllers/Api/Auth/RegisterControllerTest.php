@@ -3,18 +3,14 @@
 namespace Tests\Feature\Http\Controllers\Api\Auth;
 
 use App\Jobs\QueueEmailVerification;
-use App\Models\User;
-use App\Notifications\EmailVerification;
 use Carbon\Carbon;
 use Tests\TestCase;
 use Illuminate\Support\Str;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Queue;
 
 class RegisterControllerTest extends TestCase
 {
-    use RefreshDatabase;
     use WithFaker;
 
     /**

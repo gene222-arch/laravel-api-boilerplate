@@ -5,8 +5,6 @@ namespace Tests\Feature\Http\Controllers\Api\Auth;
 use App\Jobs\QueuePasswordResetNotification;
 use App\Models\User;
 use App\Models\UserDetail;
-use Illuminate\Auth\Notifications\ResetPassword;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
@@ -15,7 +13,6 @@ use Tests\TestCase;
 
 class ForgotPasswordControllerTest extends TestCase
 {
-    use RefreshDatabase;
     use WithFaker;
 
     protected function setUp(): void
