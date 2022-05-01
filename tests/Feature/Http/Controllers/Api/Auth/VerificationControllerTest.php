@@ -25,11 +25,11 @@ class VerificationControllerTest extends TestCase
 
         $notification = new EmailVerification();
         $mail = $notification->toMail($user);
-        
+
         $transformVerificationUrl = str($mail->actionUrl)
             ->replace(
                 env('REACT_APP_URL', 'http://localhost:3000/auth'),
-                env('APP_URL', '/api')
+                env('APP_URL' . '/api', '/api')
             );
 
         $this->get($transformVerificationUrl)
