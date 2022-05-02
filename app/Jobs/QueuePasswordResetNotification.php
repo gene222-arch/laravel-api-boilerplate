@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use App\Models\User;
-use App\Notifications\PasswordReset;
+use App\Notifications\PasswordResetNotification;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -32,6 +32,6 @@ class QueuePasswordResetNotification implements ShouldQueue
      */
     public function handle()
     {
-        $this->user->notify(new PasswordReset($this->token));
+        $this->user->notify(new PasswordResetNotification($this->token));
     }
 }
