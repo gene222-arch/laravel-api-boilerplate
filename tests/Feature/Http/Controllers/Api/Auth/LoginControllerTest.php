@@ -3,7 +3,7 @@
 namespace Tests\Feature\Http\Controllers\Api\Auth;
 
 use App\Models\User;
-use App\Models\UserDetail;
+use App\Models\Profile;
 use Tests\TestCase;
 
 class LoginControllerTest extends TestCase
@@ -14,7 +14,7 @@ class LoginControllerTest extends TestCase
     public function user_can_login()
     {
         $user = User::factory()
-            ->has(UserDetail::factory(), 'detail')
+            ->has(Profile::factory(), 'profile')
             ->create();
 
         $credentials = [
@@ -31,11 +31,15 @@ class LoginControllerTest extends TestCase
                     'expired_at',
                     'data' => [
                         'id',
-                        'first_name',
-                        'last_name',
+                        'name',
                         'email',
-                        'birthed_at',
                         'email_verified_at',
+                        'profile' => [
+                            'id',
+                            'user_id',
+                            'phone_number',
+                            'date_of_birth',
+                        ]
                     ],
                 ],
                 'message',
@@ -49,7 +53,7 @@ class LoginControllerTest extends TestCase
     public function user_can_logout()
     {
         $user = User::factory()
-            ->has(UserDetail::factory(), 'detail')
+            ->has(Profile::factory(), 'profile')
             ->create();
 
         $credentials = [

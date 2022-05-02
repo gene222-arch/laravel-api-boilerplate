@@ -4,7 +4,7 @@ namespace Tests\Feature\Http\Controllers\Api\Auth;
 
 use App\Jobs\QueuePasswordResetNotification;
 use App\Models\User;
-use App\Models\UserDetail;
+use App\Models\Profile;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
@@ -28,7 +28,7 @@ class ForgotPasswordControllerTest extends TestCase
     public function user_can_receive_forgot_password_reset_link()
     {
         $user = User::factory()
-            ->has(UserDetail::factory(), 'detail')
+            ->has(Profile::factory(), 'profile')
             ->create();
 
         $this->post(route('auth.forgot.password'), [
@@ -56,7 +56,7 @@ class ForgotPasswordControllerTest extends TestCase
     public function user_can_reset_password()
     {
         $user = User::factory()
-            ->has(UserDetail::factory(), 'detail')
+            ->has(Profile::factory(), 'profile')
             ->create([
                 'password' => Hash::make('password')
             ]);

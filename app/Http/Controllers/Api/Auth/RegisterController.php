@@ -19,7 +19,7 @@ class RegisterController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-        $user->detail()->create($request->validated());
+        $user->profile()->create($request->validated());
 
         $user->sendEmailVerificationNotification();
 

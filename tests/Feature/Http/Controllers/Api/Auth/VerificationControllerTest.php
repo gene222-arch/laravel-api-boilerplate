@@ -5,7 +5,7 @@ namespace Tests\Feature\Http\Controllers\Api\Auth;
 use App\Jobs\QueueEmailVerification;
 use Tests\TestCase;
 use App\Models\User;
-use App\Models\UserDetail;
+use App\Models\Profile;
 use Illuminate\Support\Facades\Queue;
 use App\Notifications\EmailVerification;
 
@@ -17,7 +17,7 @@ class VerificationControllerTest extends TestCase
     public function user_can_verify_email()
     {
         $user = User::factory()
-            ->has(UserDetail::factory(), 'detail')
+            ->has(Profile::factory(), 'profile')
             ->unverified()
             ->create();
 
@@ -47,7 +47,7 @@ class VerificationControllerTest extends TestCase
         Queue::fake();
 
         $user = User::factory()
-            ->has(UserDetail::factory(), 'detail')
+            ->has(Profile::factory(), 'profile')
             ->unverified()
             ->create();
 
