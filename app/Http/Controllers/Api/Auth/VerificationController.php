@@ -20,7 +20,7 @@ class VerificationController extends Controller
 
     public function verify(Request $request, User $user)
     {
-        if (! hash_equals((string) $user->id, (string) $user->getKey())) {
+        if (! hash_equals((string) $user->uuid, (string) $user->getUuidKey())) {
             throw new AuthorizationException;
         }
 

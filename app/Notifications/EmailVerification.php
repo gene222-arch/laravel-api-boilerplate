@@ -33,7 +33,7 @@ class EmailVerification extends VerifyEmail
             'verification.verify',
             Carbon::now()->addMinutes(Config::get('auth.verification.expire', 60)),
             [
-                'user' => $notifiable->getKey(),
+                'user' => $notifiable->getUuidKey(),
                 'hash' => sha1($notifiable->getEmailForVerification()),
             ]
         );
