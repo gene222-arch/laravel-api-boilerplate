@@ -2,15 +2,16 @@
 
 namespace App\Models;
 
-use App\Jobs\QueueEmailVerification;
-use App\Jobs\QueuePasswordResetNotification;
 use App\Models\Profile;
+use Illuminate\Support\Str;
 use Laravel\Passport\HasApiTokens;
+use App\Jobs\QueueEmailVerification;
 use Illuminate\Notifications\Notifiable;
+use App\Jobs\QueuePasswordResetNotification;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -24,6 +25,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array<int, string>
      */
     protected $fillable = [
+        'uuid',
         'first_name',
         'last_name',
         'email',
@@ -48,6 +50,20 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        
+        static::creating(function ($user) {
+            $user->uuid = Str::orderedUuid();
+        });
+    }
+
+    public function getUuidKey()
+    {
+        return $this->uuid;
+    }
 
     public function name(): Attribute
     {
