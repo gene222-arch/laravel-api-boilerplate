@@ -16,6 +16,8 @@ class Profile extends Model
         'date_of_birth',
     ];
 
+    public $timestamps = false;
+
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);
