@@ -45,7 +45,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    public function detail(): \Illuminate\Database\Eloquent\Relations\HasOne
+    public function profile(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
         return $this->hasOne(Profile::class);
     }

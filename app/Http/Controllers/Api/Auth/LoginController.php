@@ -27,7 +27,7 @@ class LoginController extends Controller
         return $service->generateToken(
             PassportService::personalAccessToken($request),
             'Logged in successfully.',
-            UserResource::make($request->user()->load('detail')),
+            UserResource::make($request->user()->load('profile')),
         );
     }
 
