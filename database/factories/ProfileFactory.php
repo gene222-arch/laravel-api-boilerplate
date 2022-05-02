@@ -20,7 +20,7 @@ class ProfileFactory extends Factory
         return [
             'first_name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
-            'birthed_at' => Carbon::now()->subYears(random_int(1, 5)),
+            'date_of_birth' => Carbon::now()->subYears(random_int(1, 5)),
         ];
     }
 }

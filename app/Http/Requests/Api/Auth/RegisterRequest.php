@@ -28,7 +28,7 @@ class RegisterRequest extends BaseFormRequest
             'last_name' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:users'],
             'password' => ['required', 'string', 'confirmed'],
-            'birthed_at' => ['required', 'date', 'before:today'],
+            'date_of_birth' => ['required', 'date', 'before:today'],
         ];
     }
 }

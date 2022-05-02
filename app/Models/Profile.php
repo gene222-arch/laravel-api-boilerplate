@@ -14,7 +14,7 @@ class Profile extends Model
         'user_id',
         'first_name',
         'last_name',
-        'birthed_at',
+        'date_of_birth',
     ];
 
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
