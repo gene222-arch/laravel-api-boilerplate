@@ -2,12 +2,13 @@
 
 namespace Tests\Feature\Http\Controllers\Api\Auth;
 
-use App\Jobs\QueueEmailVerification;
 use Carbon\Carbon;
 use Tests\TestCase;
 use Illuminate\Support\Str;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Jobs\QueueEmailVerification;
 use Illuminate\Support\Facades\Queue;
+use Illuminate\Foundation\Testing\WithFaker;
+use App\Jobs\QueueEmailVerificationNotification;
 
 class RegisterControllerTest extends TestCase
 {
@@ -45,6 +46,6 @@ class RegisterControllerTest extends TestCase
                 'status'
             ]);
 
-        Queue::assertPushed(QueueEmailVerification::class);
+        Queue::assertPushed(QueueEmailVerificationNotification::class);
     }
 }
