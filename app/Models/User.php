@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Jobs\QueueEmailVerification;
 use App\Jobs\QueuePasswordResetNotification;
-use App\Models\UserDetail;
+use App\Models\Profile;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -47,7 +47,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function detail(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
-        return $this->hasOne(UserDetail::class);
+        return $this->hasOne(Profile::class);
     }
 
     public function sendEmailVerificationNotification(): void
