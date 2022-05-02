@@ -16,7 +16,10 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(User::class)
+                ->unique()
+                ->constrained()
+                ->cascadeOnDelete();
             $table->string('phone_number')->unique();
             $table->timestamp('date_of_birth')->nullable();
         });
