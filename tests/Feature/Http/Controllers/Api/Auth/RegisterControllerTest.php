@@ -28,7 +28,7 @@ class RegisterControllerTest extends TestCase
             'email' => $this->faker()->safeEmail(),
             'password' => $password,
             'password_confirmation' => $password,
-            'birthed_at' => Carbon::now()->subDays(random_int(1, 30)),
+            'date_of_birth' => Carbon::now()->subDays(random_int(1, 30)),
         ];
 
         $this->post(route('auth.register'), $data)

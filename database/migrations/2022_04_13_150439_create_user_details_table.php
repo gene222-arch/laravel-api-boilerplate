@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
             $table->string('first_name');
             $table->string('last_name');
-            $table->timestamp('birthed_at')->nullable();
+            $table->timestamp('date_of_birth')->nullable();
             $table->timestamps();
         });
     }
