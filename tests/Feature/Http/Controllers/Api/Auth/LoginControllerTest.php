@@ -31,11 +31,15 @@ class LoginControllerTest extends TestCase
                     'expired_at',
                     'data' => [
                         'id',
-                        'first_name',
-                        'last_name',
+                        'name',
                         'email',
-                        'date_of_birth',
                         'email_verified_at',
+                        'profile' => [
+                            'id',
+                            'user_id',
+                            'phone_number',
+                            'date_of_birth',
+                        ]
                     ],
                 ],
                 'message',
