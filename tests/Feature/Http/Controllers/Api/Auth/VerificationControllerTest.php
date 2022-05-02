@@ -2,12 +2,12 @@
 
 namespace Tests\Feature\Http\Controllers\Api\Auth;
 
-use App\Jobs\QueueEmailVerification;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Profile;
 use Illuminate\Support\Facades\Queue;
-use App\Notifications\EmailVerification;
+use App\Jobs\QueueEmailVerificationNotification;
+use App\Notifications\EmailVerificationNotification;
 
 class VerificationControllerTest extends TestCase
 {
@@ -23,7 +23,7 @@ class VerificationControllerTest extends TestCase
 
         $this->assertFalse($user->hasVerifiedEmail());
 
-        $notification = new EmailVerification();
+        $notification = new EmailVerificationNotification();
         $mail = $notification->toMail($user);
 
         $transformVerificationUrl = str($mail->actionUrl)
@@ -57,6 +57,6 @@ class VerificationControllerTest extends TestCase
             'email' => $user->email
         ]));
 
-        Queue::assertPushed(QueueEmailVerification::class);
+        Queue::assertPushed(QueueEmailVerificationNotification::class);
     }
 }

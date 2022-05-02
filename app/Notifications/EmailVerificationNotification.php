@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Auth\Notifications\VerifyEmail;
 
-class EmailVerification extends VerifyEmail
+class EmailVerificationNotification extends VerifyEmail
 {
     use Queueable;
 
