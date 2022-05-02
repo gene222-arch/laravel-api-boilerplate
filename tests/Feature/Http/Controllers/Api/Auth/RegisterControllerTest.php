@@ -5,7 +5,6 @@ namespace Tests\Feature\Http\Controllers\Api\Auth;
 use Carbon\Carbon;
 use Tests\TestCase;
 use Illuminate\Support\Str;
-use App\Jobs\QueueEmailVerification;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Foundation\Testing\WithFaker;
 use App\Jobs\QueueEmailVerificationNotification;

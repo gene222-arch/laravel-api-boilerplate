@@ -5,7 +5,6 @@ namespace Tests\Feature\Http\Controllers\Api\Auth;
 use Tests\TestCase;
 use App\Models\User;
 use App\Models\Profile;
-use App\Jobs\QueueEmailVerification;
 use Illuminate\Support\Facades\Queue;
 use App\Jobs\QueueEmailVerificationNotification;
 use App\Notifications\EmailVerificationNotification;
