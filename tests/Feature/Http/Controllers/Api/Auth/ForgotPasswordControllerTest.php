@@ -31,7 +31,7 @@ class ForgotPasswordControllerTest extends TestCase
             ->has(Profile::factory(), 'profile')
             ->create();
 
-        $this->post(route('auth.forgot.password'), [
+        $this->post(route('auth.password.forgot'), [
             'email' => $user->email,
         ]);
 
@@ -43,7 +43,7 @@ class ForgotPasswordControllerTest extends TestCase
      */
     public function user_does_not_receive_password_reset_link()
     {
-        $this->post(route('auth.forgot.password'), [
+        $this->post(route('auth.password.forgot'), [
             'email' => $this->faker()->safeEmail()
         ]);
 
@@ -70,7 +70,7 @@ class ForgotPasswordControllerTest extends TestCase
             'password_confirmation' => 'New Password'
         ];
 
-        $this->post(route('auth.reset.password'), $data)
+        $this->post(route('auth.password.reset'), $data)
             ->assertSuccessful();
 
         $this->assertFalse(Hash::check('New Password', Hash::make('password')));

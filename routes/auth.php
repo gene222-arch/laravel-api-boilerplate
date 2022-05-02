@@ -22,8 +22,10 @@ Route::group([
 
     Route::controller(ForgotPasswordController::class)->group(function ()
     {
-        Route::post('forgot-password', 'forgotPassword')->name('forgot.password');
-        Route::post('reset-password', 'reset')->name('reset.password');
+        Route::name('password.')->group(function () {
+            Route::post('forgot-password', 'forgotPassword')->name('forgot');
+            Route::post('reset-password', 'reset')->name('reset');
+        });
     });
 });
 
