@@ -34,7 +34,7 @@ Route::group([
 {
     Route::controller(VerificationController::class)->group(function ()
     {
-        Route::get('verify/{user}', 'verify')->name('verify');
+        Route::get('verify/{user:uuid}', 'verify')->name('verify');
         Route::get('resend', 'resend')
             ->name('resend')
             ->withoutMiddleware('signed');
