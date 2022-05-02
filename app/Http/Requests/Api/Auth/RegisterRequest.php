@@ -28,6 +28,7 @@ class RegisterRequest extends BaseFormRequest
             'last_name' => ['required', 'string'],
             'email' => ['required', 'email', 'unique:users'],
             'password' => ['required', 'string', 'confirmed'],
+            'phone_number' => ['required', 'string', 'unique:profiles'],
             'date_of_birth' => ['required', 'date', 'before:today'],
         ];
     }
