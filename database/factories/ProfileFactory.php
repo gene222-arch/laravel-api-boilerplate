@@ -18,8 +18,7 @@ class ProfileFactory extends Factory
     public function definition()
     {
         return [
-            'first_name' => $this->faker->firstName(),
-            'last_name' => $this->faker->lastName(),
+            'phone_number' => $this->faker->phoneNumber(),
             'date_of_birth' => Carbon::now()->subYears(random_int(1, 5)),
         ];
     }
