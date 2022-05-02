@@ -41,6 +41,6 @@ class PassportService
             );
         }
 
-        return auth()->user()->createToken(env('PASSPORT_PERSONAL_ACCESS_CLIENT_SECRET'));
+        return auth()->user()->createToken(config('passport.personal_access_client.secret'));
     }
 }
