@@ -7,7 +7,7 @@ use Tests\TestCase;
 use App\Models\User;
 use App\Models\Profile;
 use Illuminate\Support\Facades\Queue;
-use App\Notifications\EmailVerification;
+use App\Notifications\EmailVerificationNotification;
 
 class VerificationControllerTest extends TestCase
 {
@@ -23,7 +23,7 @@ class VerificationControllerTest extends TestCase
 
         $this->assertFalse($user->hasVerifiedEmail());
 
-        $notification = new EmailVerification();
+        $notification = new EmailVerificationNotification();
         $mail = $notification->toMail($user);
 
         $transformVerificationUrl = str($mail->actionUrl)
